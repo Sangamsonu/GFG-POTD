@@ -1,0 +1,45 @@
+class GFG
+{
+    ArrayList<Integer> find(int arr[], int n, int x)
+    {
+      
+        int left_index = -1;
+      
+        int start = 0;
+        int end = n-1;
+      
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+          
+           if(arr[mid] < x){
+               start = mid + 1;
+           }else{
+               end = mid-1;
+               left_index = mid;
+           }
+        }
+        int right_index = -1; 
+        start = 0;
+        end = n-1;
+      
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+          
+            if(arr[mid] <= x){
+                start = mid+1;
+                right_index = mid;
+            }else{
+                end = mid - 1;
+            }
+        }
+        ArrayList<Integer> al = new ArrayList<Integer>();
+        if(arr[left_index] != x || arr[right_index] != x){
+            al.add(-1);
+            al.add(-1);
+            return al;
+        }
+        al.add(left_index);
+        al.add(right_index);
+        return al;
+    }
+}
